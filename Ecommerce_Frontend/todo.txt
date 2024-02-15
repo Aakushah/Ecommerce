@@ -1,0 +1,16 @@
+1.add pagination in search pages,order pages/
+2.loading ,lazy ,
+3.update user details
+4.
+
+
+
+7.redux toolkit
+
+
+2/13/2024
+today TasK:
+ react pagination 
+ api to fetch ecommerce product with description,price,name,key
+ apply filter and search property 
+

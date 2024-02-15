@@ -1,0 +1,61 @@
+1.UserLogin                                            ✅
+2.Signup                                               ✅
+3.updates details you that need ui/ux 
+4.custom error and response                            ✅
+
+5.connect frontend and backend                         ✅
+6. api call for all products
+
+
+note:todo
+
+1.initally make an api call to fetch  all products.
+
+2.   make an api call to fetch only those products  based on filters ( get only product with filters(searchbyname,maxPrice,category)   )   
+
+3.sort by price and display the products on pagination
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- [ ] get all product data from the server (pageable)
+- [x] filter by category
+- [x] filter by name
+- [ ] sort by price ascending / descending
+- [ ] sort by name ascending / descending
+- [ ] pagination
+
+add to cart functionality
+- [ ] add a single item to the cart
+- [ ] add multiple items to the cart at once
+- [ ] view the contents of the shopping cart
+- [ ] remove an individual item from the cart
+- [ ] empty the entire cart
+
+payment methods for all products
+- [ ] credit card payment
+- [ ] PayPal payment
+- [ ] ApplePay payment  
