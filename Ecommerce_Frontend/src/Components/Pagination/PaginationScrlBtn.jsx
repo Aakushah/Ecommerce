@@ -4,14 +4,15 @@ const PaginationScrlBtn = ({ showPerPage, onPaginationChange, total }) => {
 
   const [counter, setCounter] = useState(1);
 
+  
+
   const [numberOfButtons, setNumberOfButoons] = useState(
-    Math.ceil(total / showPerPage)
+    Math.ceil( total / showPerPage)
   );
 
-  useEffect(  () => {
-    
 
-  },[]);
+  console.log(counter,showPerPage,total,numberOfButtons);
+  
 
   useEffect(() => {
 

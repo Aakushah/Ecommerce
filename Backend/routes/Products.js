@@ -1,7 +1,5 @@
 import express from 'express';
 
-import products from '../config/products.json' assert {type:'json'} ;
-
 import Product from '../models/Product.js';
 
 const router=express.Router();
@@ -13,15 +11,12 @@ router.get("/", async (req, res) => {
 
         const cnt=await Product.countDocuments().exec();
 
-        const maxPrice=parseInt(req.query.maxPrice) || 50000 ;
+        const maxPrice=parseInt(req.query.maxPrice) || 500000 ;
 		const page = parseInt(req.query.page) - 1 || 0;
-		const limit = parseInt(req.query.limit) || 5;
-		const search = req.query.search || "";
-        
-        let sortValues = req.query.sortValues || "price";
-
-		let category = req.query.category || "All";
-
+		const limit = parseInt(req.query.limit) || 16;
+		const search = req.query.search || "" ;
+        let sortValues = req.query.sort ;
+		let category = req.query.category || "All" ;
 		const categoryOptions = [
 
 			"Electronics",
@@ -31,22 +26,25 @@ router.get("/", async (req, res) => {
 			"Fitness and Wellness",
 
 		];
-
 		category === "All"
 			? (category = [...categoryOptions])
 			: (category = req.query.category.split(","));
+	
 
-        
-		 req.query.sortValues ? (sortValues = req.query.sortValues.split(",")) : (sortValues = [sortValues]);
 
-		let sortBy = {};
-		if (sortValues[1]) {
-			sortBy[sortValues[0]] = sortValues[1];
-		} else {
-			sortBy[sortValues[0]] = "asc";
+		if ( sortValues === 'None' ) {
+			sortValues = 1;
+		} else if( sortValues === 'desc') {
+			sortValues = -1 ;
+		}else{
+			sortValues = 1;
+
 		}
 
 
+		console.log("sortValues : ",sortValues)
+
+	
 		const products = await Product.find(
             {
                  name: { $regex: search, $options: "i" },
@@ -55,9 +53,13 @@ router.get("/", async (req, res) => {
             })
 			.where("category")
 			.in([...category])
-			.sort(sortBy)
+			.sort({price : sortValues})
 			.skip(page * limit)
 			.limit(limit);
+
+		console.log(products);
+
+
 
 
 		const total = await Product.countDocuments({
