@@ -44,8 +44,8 @@ const SignUp = () => {
         navigate('/')
 
       } catch (error) {
-        console.log(error.response);
-        console.log('first')
+       
+        
 
         toast.warning(error.response.data.message);
   

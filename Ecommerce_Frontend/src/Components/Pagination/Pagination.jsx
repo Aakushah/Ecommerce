@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Product_Card from '../Product_Card.jsx'
 import PaginationScrlBtn from './PaginationScrlBtn.jsx'
+import axios from 'axios'
 
 const Pagination = () => {
 
@@ -204,6 +205,28 @@ const Pagination = () => {
     
     ])
 
+    useEffect(() =>{
+
+        async function fetchData() {
+            // You can await here
+            try{
+                const response = await axios.get('http://localhost:4000/api/v1/products/');
+                console.log(response.data.products);
+                setPosts([response.data.products])
+            }catch(error){
+
+                console.log(error);
+
+            }
+
+            // ...
+          }
+        fetchData();
+        
+
+
+    },[])
+
     
 
 
@@ -236,7 +259,7 @@ const Pagination = () => {
 
         {
             posts.slice(pagination.start, pagination.end).map( ( product ) => (
-                <Product_Card key={product.productId}  item={product} /> )
+                <Product_Card key={product._id}  item={product} /> )
             )
         }
 
